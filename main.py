@@ -23,26 +23,24 @@ def check_length_equality(data: bytes, fragment_length: int) -> None:
 
 
 def elaborate_data(data: bytes) -> list[bin]:
-    """Processes data bytes and returns them as list of 8-bits long binary numbers"""
+    """Processes data bytes and returns them as list of 8-bit long binary numbers"""
     return [bin(byte)[2:].rjust(8, '0') for byte in data]
 
 
 def split_to_fragments(data: list[bin], fragment_length: int) -> list[list[DnaByte]]:
     """Splits DNA data into the equal fragments."""
-    index = 0
     dna_fragments = []
 
-    while index != len(data):
+    for index in range(0, int(len(data) / fragment_length)):
         fragment = []
-        for byte in data[index:index+fragment_length]:
+        for byte in data[index * fragment_length:(index + 1) * fragment_length]:
             fragment.append(split_byte(byte))
         dna_fragments.append(fragment)
-        index = index + fragment_length
     return dna_fragments
 
 
 def split_byte(byte: str) -> DnaByte:
-    """Splits DNA byte into the DNA base and quality score character as stores them as a DnaByte class object."""
+    """Splits DNA byte into the DNA base and quality score character and stores them as a DnaByte class object."""
     dna_byte = DnaByte()
     dna_byte.dna_base = dna_convert(dna_base=int(byte[:-6], 2))
     dna_byte.quality_score = chr(int(byte[-6:], 2) + 33)
