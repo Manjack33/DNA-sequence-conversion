@@ -3,6 +3,10 @@
 ### Requirements
 - **Python 3.10+**
 
+### Example of use
+- **`./main.py input 15`** - input -> encoded file; 15 -> L - fragment length
+
+
 ### Description
 DNA is a long molecule that lies inside the nucleus of a cell, and it can be thought of as a very long string consisting of characters in the alphabet {A, C, G, T}. DNA sequencing is the technology that enables reading from DNA molecules and converting them to strings on the output. We are interested in a technology that works in the following way: the DNA molecules in the input are fragmented into pieces of equal length L; each piece is then sequenced by the technology, and its content is encoded in the output. The particular encoding used in the output is the following:
 - The file contains multiple consecutive entries, one per piece.
